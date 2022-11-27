@@ -39,39 +39,35 @@ const Restaurants = () => {
                 <HeadingComponent name="Restaurants"/>
                 {
                     restaurants.map((restaurant, index) => {
-                    let ratings = [];
-                    if (Number.isInteger(restaurant.rating)) {
-                        ratings = new Array(restaurant.rating).fill(1);
-                    } else {
-                        ratings = new Array(Math.floor(restaurant.rating)).fill(1);
-                        ratings.push(0.5);
-                    }
-                    return (
-                        <Card
-                            key={`restaurant-${index}`}
-                            onClick={() => selectRestaurant(restaurant.id)}
-                            sx={{display: 'flex', my: "20px", height: "350px"}}
-                        >
-                            <CardContent sx={{width: "70%", display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                                <HeadingComponent icon={<RestaurantIcon/>} name={restaurant.name} />
-                                <Typography variant="body2" color="text.secondary">
-                                    {restaurant.price}
-                                </Typography>
-                                <div>
-                                    {ratings.map((rating, index) => {
-                                        if (rating === 1) {
-                                            return <StarIcon key={`rating-${index}`} />;
-                                        }
-                                        return <StarHalf key={`rating-${index}`} />;
-                                    })}
-                                </div>
-                            </CardContent>
-                            <ImageViewer
-                                image={restaurant.image_url}
-                                sx={{ width: '30%' }}
-                            />
-                        </Card>
-                    )
+                        let ratings = [];
+                        if (Number.isInteger(restaurant.rating)) {
+                            ratings = new Array(restaurant.rating).fill(1);
+                        } else {
+                            ratings = new Array(Math.floor(restaurant.rating)).fill(1);
+                            ratings.push(0.5);
+                        }
+                        return (
+                            <Card
+                                key={`restaurant-${index}`}
+                                onClick={() => selectRestaurant(restaurant.id)}
+                                sx={{display: 'flex', my: "20px", height: "350px"}}
+                            >
+                                <CardContent sx={{width: "70%", display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                                    <HeadingComponent icon={<RestaurantIcon/>} name={restaurant.name} />
+                                    <Typography variant="body2" color="text.secondary">
+                                        {restaurant.price}
+                                    </Typography>
+                                    {restaurant.rating &&
+                                        <div>
+                                            <Ratings ratings={restaurant.rating} />
+                                    </div>}
+                                </CardContent>
+                                <ImageViewer
+                                    image={restaurant.image_url}
+                                    sx={{ width: '30%' }}
+                                />
+                            </Card>
+                        )
                     })
                 }
             </Container>
