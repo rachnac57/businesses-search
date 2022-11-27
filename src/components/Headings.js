@@ -5,7 +5,7 @@ export default function HeadingComponent(props) {
     return (
         <>
             {props.icon && props.icon}
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant={props.variant || "h4"} component="div">
                 {props.name}
             </Typography>
         </>
