@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import StarIcon from '@mui/icons-material/Star';
 import {useNavigate} from 'react-router-dom';
 import { fetchData } from '../api/api';
 import HeadingComponent from '../components/Headings';
+import ImageViewer from "../components/ImageViewer";
 import { StarHalf } from '@mui/icons-material';
 import { Container } from '@mui/material';
 
@@ -66,8 +66,7 @@ const Restaurants = () => {
                                     })}
                                 </div>
                             </CardContent>
-                            <CardMedia
-                                component="img"
+                            <ImageViewer
                                 image={restaurant.image_url}
                                 sx={{ width: '30%' }}
                             />
