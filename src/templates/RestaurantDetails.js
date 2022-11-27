@@ -3,11 +3,11 @@ import {useLocation} from 'react-router-dom';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import Container from '@mui/material/Container';
 import {fetchData} from '../api/api';
 import HeadingComponent from "../components/Headings";
+import ImageViewer from "../components/ImageViewer";
 import {getOperatingHours} from '../utils/Utils';
 
 const selectedRestaurant = (id) => fetchData({path: `https://api.yelp.com/v3/businesses${id}`});
@@ -38,8 +38,7 @@ export default function RestaurantDetails() {
                     <HeadingComponent icon={<RestaurantIcon/>} name={restaurant.name} />
                 </Typography>
                 <Card>
-                    <CardMedia
-                        component="img"
+                    <ImageViewer
                         sx={{ height: '350px' }}
                         image={restaurant.image_url}
                     />
