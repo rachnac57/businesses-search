@@ -3,7 +3,7 @@ import StarIcon from '@mui/icons-material/Star';
 
 export default function Ratings(props) {
     let ratingsList = [];
-    const {ratings = []} = props;
+    const {ratings} = props;
     if (Number.isInteger(ratings)) {
         ratingsList = new Array(ratings).fill(1);
     } else {
