@@ -3,12 +3,12 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
-import StarIcon from '@mui/icons-material/Star';
 import {useNavigate} from 'react-router-dom';
 import { fetchData } from '../api/api';
 import HeadingComponent from '../components/Headings';
 import ImageViewer from "../components/ImageViewer";
-import { StarHalf } from '@mui/icons-material';
+import Ratings from '../components/Ratings';
+
 import { Container } from '@mui/material';
 
 const fetchBusinesses = fetchData({path: 'https://api.yelp.com/v3/businesses/search',
@@ -39,13 +39,6 @@ const Restaurants = () => {
                 <HeadingComponent name="Restaurants"/>
                 {
                     restaurants.map((restaurant, index) => {
-                        let ratings = [];
-                        if (Number.isInteger(restaurant.rating)) {
-                            ratings = new Array(restaurant.rating).fill(1);
-                        } else {
-                            ratings = new Array(Math.floor(restaurant.rating)).fill(1);
-                            ratings.push(0.5);
-                        }
                         return (
                             <Card
                                 key={`restaurant-${index}`}
@@ -58,8 +51,8 @@ const Restaurants = () => {
                                         {restaurant.price}
                                     </Typography>
                                     {restaurant.rating &&
-                                        <div>
-                                            <Ratings ratings={restaurant.rating} />
+                                    <div>
+                                        <Ratings ratings={restaurant.rating} />
                                     </div>}
                                 </CardContent>
                                 <ImageViewer
@@ -68,7 +61,7 @@ const Restaurants = () => {
                                 />
                             </Card>
                         )
-                    })
+                        })
                 }
             </Container>
         </div>
